@@ -16,23 +16,39 @@ class CardSliderCell: UICollectionViewCell, ParallaxCardCell {
 	private var zoom: CGFloat = 0
 	private var shadeOpacity: CGFloat = 0
 	
-	open var imageView = UIImageView()
+    open var view = UIView() {
+        didSet {
+            resetCellSubviews()
+            update()
+        }
+    }
 	open var shadeView = UIView()
 	open var highlightView = UIView()
 	
 	private var latestBounds: CGRect?
-	
-	open override func awakeFromNib() {
-		super.awakeFromNib()
-		imageView.contentMode = .scaleAspectFill
-		contentView.addSubview(imageView)
-		shadeView.backgroundColor = .white
-		contentView.addSubview(shadeView)
-		highlightView.backgroundColor = .black
-		highlightView.alpha = 0
-		contentView.addSubview(highlightView)
-	}
-	
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        resetCellSubviews()
+    }
+    
+    private func resetCellSubviews() {
+        contentView.subviews.forEach({ $0.removeFromSuperview() })
+        contentView.addSubview(view)
+        view.layoutSubviews()
+        shadeView.backgroundColor = .white
+        contentView.addSubview(shadeView)
+        highlightView.backgroundColor = .black
+        highlightView.alpha = 0
+        contentView.addSubview(highlightView)
+        contentView.bringSubviewToFront(view)
+        self.layoutSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 	open func setShadeOpacity(progress: CGFloat) {
 		shadeOpacity = progress
 		updateShade()
@@ -41,7 +57,7 @@ class CardSliderCell: UICollectionViewCell, ParallaxCardCell {
 	
 	open func setZoom(progress: CGFloat) {
 		zoom = progress
-		updateImagePosition()
+        updateViewPosition()
 	}
 	
 	override open var bounds: CGRect {
@@ -54,7 +70,7 @@ class CardSliderCell: UICollectionViewCell, ParallaxCardCell {
 	}
 	
 	private func update() {
-		updateImagePosition()
+		updateViewPosition()
 		updateShade()
 		updateMask()
 		updateShadow()
@@ -65,10 +81,10 @@ class CardSliderCell: UICollectionViewCell, ParallaxCardCell {
 		shadeView.alpha = 1 - shadeOpacity
 	}
 	
-	open func updateImagePosition() {
+	open func updateViewPosition() {
 		zoom = min(zoom, 1)
-		imageView.frame = bounds.applying(CGAffineTransform(scaleX: 1 + (1 - zoom), y: 1 + (1 - zoom)))
-		imageView.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        view.frame = bounds.applying(CGAffineTransform(scaleX: 1 + (1 - zoom), y: 1 + (1 - zoom)))
+        view.center = CGPoint(x: bounds.midX, y: bounds.midY)
 	}
 	
 	open func updateMask() {

@@ -17,8 +17,7 @@ class CardsLayout: UICollectionViewLayout {
 		didSet { invalidateLayout() }
 	}
 	
-	///
-	public var minScale: CGFloat = 0.8 {
+    public var minScale: CGFloat = 0.8 {
 		didSet { invalidateLayout() }
 	}
 	public var spacing: CGFloat = 35 {
@@ -61,11 +60,6 @@ class CardsLayout: UICollectionViewLayout {
 	open override func prepare() {
 		guard !didInitialSetup else { return }
 		didInitialSetup = true
-		
-		let width = collectionBounds.width * 0.7
-		let height = width / 0.6
-		itemSize = CGSize(width: width, height: height)
-		
 		collectionView.setContentOffset(CGPoint(x: collectionViewContentSize.width - collectionBounds.width, y: 0), animated: false)
 	}
 	

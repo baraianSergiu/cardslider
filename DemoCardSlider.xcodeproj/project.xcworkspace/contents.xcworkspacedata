@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:DemoCardSlider.xcodeproj">
+      location = "group:../CardSlider/CardSlider.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
