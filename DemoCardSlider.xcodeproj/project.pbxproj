@@ -16,6 +16,16 @@
 		C27B3F62255C2EEE001FEA95 /* CardSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C27B3F60255C2EEE001FEA95 /* CardSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C24631012563B11F00FDB760 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C24630FD2563B11F00FDB760 /* CardSlider.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7448447821779CEF00589933;
+			remoteInfo = CardSlider;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		C27B3F5F255C2D1A001FEA95 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -38,6 +48,7 @@
 		74AE256F2177B464004FC718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		969E76B72178C9C600877BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		969E76C92178F1F100877BF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C24630FD2563B11F00FDB760 /* CardSlider.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CardSlider.xcodeproj; path = CardSlider/CardSlider.xcodeproj; sourceTree = "<group>"; };
 		C27B3F60255C2EEE001FEA95 /* CardSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CardSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -56,6 +67,7 @@
 		7448443E2176DA9D00589933 = {
 			isa = PBXGroup;
 			children = (
+				C24630FD2563B11F00FDB760 /* CardSlider.xcodeproj */,
 				744844492176DA9D00589933 /* DemoCardSlider */,
 				744844482176DA9D00589933 /* Products */,
 				7448448321779D1700589933 /* Frameworks */,
@@ -89,6 +101,14 @@
 				C27B3F60255C2EEE001FEA95 /* CardSlider.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C24630FE2563B11F00FDB760 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C24631022563B11F00FDB760 /* CardSlider.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,12 +159,28 @@
 			mainGroup = 7448443E2176DA9D00589933;
 			productRefGroup = 744844482176DA9D00589933 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C24630FE2563B11F00FDB760 /* Products */;
+					ProjectRef = C24630FD2563B11F00FDB760 /* CardSlider.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				744844462176DA9D00589933 /* DemoCardSlider */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C24631022563B11F00FDB760 /* CardSlider.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CardSlider.framework;
+			remoteRef = C24631012563B11F00FDB760 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		744844452176DA9D00589933 /* Resources */ = {

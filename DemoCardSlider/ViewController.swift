@@ -11,6 +11,13 @@ class ViewController: UIViewController {
         cardSlider.delegate = self
         view.addSubview(cardSlider)
         cardSlider.reloadData()
+        
+    // Mark: cutomize optional values
+        cardSlider.visibleItemsCount = 3
+        cardSlider.pageIndicatorTintColor = .gray
+        cardSlider.currentPageIndicatorTintColor = .red
+        cardSlider.pageControlYPosition = 0
+        cardSlider.pageControlXPosition = 0
 	}
 }
 

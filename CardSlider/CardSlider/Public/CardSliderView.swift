@@ -15,16 +15,44 @@ public class CardSliderView: UIView {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let cellID = "CardCell"
     private let pageControl: UIPageControl = UIPageControl(frame: .zero)
+    private let collectionViewLayout = CardsLayout()
     private var itemSize: CGSize = CGSize()
     
     public weak var dataSource: CardSliderViewDataSource!
     public weak var delegate: CardSliderViewDelegate!
     
-    // Mark: Page Control costomization
-    public var pageIndicatorTintColor: UIColor = .gray { didSet { setupPageControl() }}
-    public var currentPageIndicatorTintColor: UIColor = .red { didSet { setupPageControl() }}
-    public var pageControlHeight: CGFloat = 100 { didSet { setupPageControl() }} // height is relative to Y axis and fixed bottom position
-    public var pageControlPosition: CGFloat = 0 { didSet { setupPageControl() }} // value in points, 0 == centered, "-" value will move item to left, "+" to right
+    public var visibleItemsCount: Int = 3 {
+        didSet {
+            collectionViewLayout.visibleItemsCount = visibleItemsCount
+        }
+    }
+
+// Mark: Page Control costomization
+    public var pageIndicatorTintColor: UIColor = .gray {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    public var currentPageIndicatorTintColor: UIColor = .red {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    public var pageControlYPosition: CGFloat = 0 { // relative to Y axis referenced to view bottom position, 0 = most bottom position
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    public var pageControlXPosition: CGFloat = 0 { // value in points, 0 == centered, "-" value will move item to left, "+" to right
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+//    Mark: View Implementation
     
     public init(frame: CGRect, itemSize: CGSize) {
         super.init(frame: frame)
@@ -43,9 +71,8 @@ public class CardSliderView: UIView {
     }
     
     private func setupCollectionView() {
-        let layout = CardsLayout()
-        collectionView.collectionViewLayout = layout
-        layout.itemSize = itemSize
+        collectionView.collectionViewLayout = collectionViewLayout
+        collectionViewLayout.itemSize = itemSize
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CardSliderCell.self, forCellWithReuseIdentifier: cellID)
@@ -73,10 +100,10 @@ public class CardSliderView: UIView {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            pageControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: pageControlPosition),
-            pageControl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: pageControlPosition),
-            pageControl.topAnchor.constraint(equalTo: self.bottomAnchor, constant: pageControlHeight * -1),
-            pageControl.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            pageControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: pageControlXPosition),
+            pageControl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: pageControlXPosition),
+            pageControl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: pageControlYPosition * -1),
+            pageControl.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
