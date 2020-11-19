@@ -6,18 +6,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
 		super.viewDidLoad()
-        let cardSlider: CardSliderView = CardSliderView.init(frame: view.bounds, itemSize: CGSize(width: 250, height: 200))
+        let cardSlider: CardSliderView = CardSliderView.init(frame: view.bounds)
         cardSlider.dataSource = self
         cardSlider.delegate = self
         view.addSubview(cardSlider)
-        cardSlider.reloadData()
         
     // Mark: cutomize optional values
         cardSlider.visibleItemsCount = 3
+        cardSlider.useAlphaForVisibleCells = true
         cardSlider.pageIndicatorTintColor = .gray
         cardSlider.currentPageIndicatorTintColor = .red
-        cardSlider.pageControlYPosition = 0
+        cardSlider.pageControlYPosition = 50
         cardSlider.pageControlXPosition = 0
+        cardSlider.itemHeight = 200
+        cardSlider.itemWidth = .large
+        
+        cardSlider.reloadData()
 	}
 }
 
@@ -32,7 +36,11 @@ extension ViewController: CardSliderViewDataSource, CardSliderViewDelegate {
 		return 10
 	}
     
-    func itemSelected(for index: Int) {
+    func itemSelected(at index: Int) {
+        
+    }
+    
+    func itemDisplayed(at index: Int) {
         
     }
 
